@@ -5,6 +5,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.CarvanaBasePage;
 import utilities.TestData;
+import utilities.Waiter;
 
 import java.util.stream.IntStream;
 
@@ -62,7 +63,7 @@ public class CarvanaHomePageTest extends CarvanaBase {
      * Given user is on "https://www.carvana.com/"
      * When user clicks on “SIGN IN” button
      * Then user should be navigated to “Sign in” modal
-     * When user enters email as johndoe   @gmail.com
+     * When user enters email as johndoe@gmail.com
      * And user clicks on "CONTINUE" button
      * And user enters password as "abcd1234"
      * And user clicks on "SIGN IN" button
@@ -70,8 +71,17 @@ public class CarvanaHomePageTest extends CarvanaBase {
      */
     @Test(priority = 4, description = "Validate the sign in error message")
     public void validateSingInErrorMessage(){
-
+        Waiter.waitForVisibilityOfElements(carvanaBasePage.singInButton,5);
+        carvanaBasePage.singInButton.click();
+        carvanaBasePage.emailInput.sendKeys(TestData.email);
+        carvanaBasePage.continueButton.click();
+        carvanaBasePage.passwordInput.sendKeys(TestData.password);
+        carvanaBasePage.continueButton.click();
+        Assert.assertTrue(carvanaBasePage.errorMessage.isDisplayed());
+        Assert.assertEquals(carvanaBasePage.errorMessage.getText(),TestData.errorMessage);
     }
+
+
 
 }
 
