@@ -105,9 +105,11 @@ public class SearchCarsTest extends CarvanaBase{
             Assert.assertTrue(searchCarsPage.monthlyPayment.get(i).isDisplayed());
             Assert.assertFalse(searchCarsPage.monthlyPayment.get(i).getText().isEmpty());
 
+            Assert.assertTrue(searchCarsPage.downPayment.get(i).isDisplayed());
+            Assert.assertFalse(searchCarsPage.downPayment.get(i).getText().isEmpty());
 
-
-
+            Assert.assertTrue(searchCarsPage.deliveryChip.get(i).isDisplayed());
+            Assert.assertFalse(searchCarsPage.deliveryChip.get(i).getText().isEmpty());
         }
     }
 }

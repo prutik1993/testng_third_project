@@ -30,5 +30,9 @@ public class SearchCarsPage extends CarvanaBasePage{
     public List<WebElement> price;
     @FindBy(css = "div[data-qa='monthly-payment']")
     public List<WebElement> monthlyPayment;
+    @FindBy(className = "down-payment")
+    public List<WebElement> downPayment;
+    @FindBy(css = "div[class='tk-pane full-width']:nth-child(2)")
+    public List<WebElement> deliveryChip;
 
 }
