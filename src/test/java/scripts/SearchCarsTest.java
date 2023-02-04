@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import pages.CarvanaBasePage;
 import pages.SearchCarsPage;
 import utilities.TestData;
+import utilities.Waiter;
 import utilities.WindowHandler;
 
 import java.util.stream.IntStream;
@@ -16,6 +17,7 @@ public class SearchCarsTest extends CarvanaBase{
     public void setPage(){
         carvanaBasePage = new CarvanaBasePage();
         searchCarsPage = new SearchCarsPage();
+        Waiter.waitForElementToBeClickable(carvanaBasePage.searchCarsButton,5);
         carvanaBasePage.searchCarsButton.click();
         WindowHandler.moveToChildWindow();
         Assert.assertEquals(driver.getCurrentUrl(),"https://www.carvana.com/cars");
@@ -71,10 +73,41 @@ public class SearchCarsTest extends CarvanaBase{
 
     @Test(priority = 2,description = "Validate the search result tiles")
     public void validateSearchResultTitles(){
+
      searchCarsPage.searchInput.sendKeys(TestData.carMake);
+
+     Waiter.waitForElementToBeClickable(searchCarsPage.goButton,5);
      searchCarsPage.goButton.click();
 
      WindowHandler.moveToChildWindow();
+     Waiter.waitUntilUrlIs("mercedes-benz",10);
+
      Assert.assertTrue(driver.getCurrentUrl().contains("mercedes-benz"));
+        String priceResult;
+        for (int i = 0; i < searchCarsPage.images.size(); i++) {
+            Assert.assertTrue(searchCarsPage.images.get(i).isDisplayed());
+
+            Assert.assertTrue(searchCarsPage.favoriteButton.get(i).isDisplayed());
+
+            Assert.assertTrue(searchCarsPage.inventoryType.get(i).isDisplayed());
+            Assert.assertFalse(searchCarsPage.inventoryType.get(i).getText().isEmpty());
+
+            Assert.assertTrue(searchCarsPage.yearMakeModel.get(i).isDisplayed());
+            Assert.assertFalse(searchCarsPage.yearMakeModel.get(i).getText().isEmpty());
+
+            Assert.assertTrue(searchCarsPage.trimMileage.get(i).isDisplayed());
+            Assert.assertFalse(searchCarsPage.trimMileage.get(i).getText().isEmpty());
+
+            priceResult = searchCarsPage.price.get(i).getText();
+            priceResult = priceResult.replaceAll("[^0-9]","");
+            Assert.assertTrue(Integer.parseInt(priceResult) > 0);
+
+            Assert.assertTrue(searchCarsPage.monthlyPayment.get(i).isDisplayed());
+            Assert.assertFalse(searchCarsPage.monthlyPayment.get(i).getText().isEmpty());
+
+
+
+
+        }
     }
 }

@@ -16,4 +16,19 @@ public class SearchCarsPage extends CarvanaBasePage{
     public WebElement searchInput;
     @FindBy(css = "button[data-qa='go-button']")
     public WebElement goButton;
+    @FindBy(css = "picture[data-qa='base-vehicle-image']")
+    public List<WebElement> images;
+    @FindBy(css = "svg[data-qa='favorite-icon']")
+    public List<WebElement> favoriteButton;
+    @FindBy(css = "div[data-qa='inventory-type-experiment']")
+    public List<WebElement> inventoryType;
+    @FindBy(css = "div[data-qa='make-model']")
+    public List<WebElement> yearMakeModel;
+    @FindBy(css = "div[data-qa='trim-mileage']")
+    public List<WebElement> trimMileage;
+    @FindBy(css = "div[data-qa='price']")
+    public List<WebElement> price;
+    @FindBy(css = "div[data-qa='monthly-payment']")
+    public List<WebElement> monthlyPayment;
+
 }

@@ -16,6 +16,9 @@ public class Waiter {
     public static void waitForVisibilityOfElements(WebElement element, int seconds){
         new WebDriverWait(Driver.getDriver(),seconds).until(ExpectedConditions.visibilityOf(element));
     }
+    public static void waitUntilUrlIs(String url, int seconds){
+        new WebDriverWait(Driver.getDriver(),seconds).until(ExpectedConditions.urlContains(url));
+    }
     public static void waitForElementToBeClickable(WebElement element, int seconds){
         new WebDriverWait(Driver.getDriver(),seconds).until(ExpectedConditions.elementToBeClickable(element));
     }
