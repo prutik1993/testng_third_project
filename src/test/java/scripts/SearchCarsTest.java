@@ -17,10 +17,10 @@ public class SearchCarsTest extends CarvanaBase{
     public void setPage(){
         carvanaBasePage = new CarvanaBasePage();
         searchCarsPage = new SearchCarsPage();
-        Waiter.waitForElementToBeClickable(carvanaBasePage.searchCarsButton,5);
-        carvanaBasePage.searchCarsButton.click();
-        WindowHandler.moveToChildWindow();
-        Assert.assertEquals(driver.getCurrentUrl(),"https://www.carvana.com/cars");
+//        Waiter.waitForElementToBeClickable(carvanaBasePage.searchCarsButton,5);
+//        carvanaBasePage.searchCarsButton.click();
+//        WindowHandler.moveToChildWindow();
+//        Assert.assertEquals(driver.getCurrentUrl(),"https://www.carvana.com/cars");
     }
 
     /**
@@ -73,13 +73,18 @@ public class SearchCarsTest extends CarvanaBase{
 
     @Test(priority = 2,description = "Validate the search result tiles")
     public void validateSearchResultTitles(){
+        Waiter.pause(2);
+     carvanaBasePage.searchCarsButton.click();
+
+     WindowHandler.moveToChildWindow();
+
+     Assert.assertEquals(driver.getCurrentUrl(),"https://www.carvana.com/cars");
 
      searchCarsPage.searchInput.sendKeys(TestData.carMake);
 
      Waiter.waitForElementToBeClickable(searchCarsPage.goButton,5);
      searchCarsPage.goButton.click();
 
-     WindowHandler.moveToChildWindow();
      Waiter.waitUntilUrlIs("mercedes-benz",10);
 
      Assert.assertTrue(driver.getCurrentUrl().contains("mercedes-benz"));
@@ -107,7 +112,6 @@ public class SearchCarsTest extends CarvanaBase{
 
             Assert.assertTrue(searchCarsPage.downPayment.get(i).isDisplayed());
             Assert.assertFalse(searchCarsPage.downPayment.get(i).getText().isEmpty());
-
             Assert.assertTrue(searchCarsPage.deliveryChip.get(i).isDisplayed());
             Assert.assertFalse(searchCarsPage.deliveryChip.get(i).getText().isEmpty());
         }
