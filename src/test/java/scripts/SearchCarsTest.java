@@ -3,7 +3,6 @@ package scripts;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.CarvanaBasePage;
 import pages.SearchCarsPage;
 import utilities.TestData;
 import utilities.Waiter;
@@ -16,10 +15,10 @@ public class SearchCarsTest extends CarvanaBase{
     @BeforeMethod
     public void setPage(){
         searchCarsPage = new SearchCarsPage();
-//        Waiter.waitForElementToBeClickable(carvanaBasePage.searchCarsButton,5);
-//        carvanaBasePage.searchCarsButton.click();
-//        WindowHandler.moveToChildWindow();
-//        Assert.assertEquals(driver.getCurrentUrl(),"https://www.carvana.com/cars");
+        Waiter.pause(2);
+        carvanaBasePage.searchCarsButton.click();
+        WindowHandler.moveToChildWindow();
+        Assert.assertEquals(driver.getCurrentUrl(),"https://www.carvana.com/cars");
     }
 
     /**
@@ -72,12 +71,6 @@ public class SearchCarsTest extends CarvanaBase{
 
     @Test(priority = 2,description = "Validate the search result tiles")
     public void validateSearchResultTitles(){
-        Waiter.pause(2);
-     carvanaBasePage.searchCarsButton.click();
-
-     WindowHandler.moveToChildWindow();
-
-     Assert.assertEquals(driver.getCurrentUrl(),"https://www.carvana.com/cars");
 
      searchCarsPage.searchInput.sendKeys(TestData.carMake);
 
