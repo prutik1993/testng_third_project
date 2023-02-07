@@ -11,11 +11,6 @@ import java.util.stream.IntStream;
 
 public class CarvanaHomePageTest extends CarvanaBase {
 
-    @BeforeMethod
-    public void setPage() {
-        carvanaBasePage = new CarvanaBasePage();
-    }
-
     /**
      * Test Case 1: Test name = Validate Carvana home page title and url
      * Test priority = 1

@@ -15,7 +15,6 @@ public class SearchCarsTest extends CarvanaBase{
 
     @BeforeMethod
     public void setPage(){
-        carvanaBasePage = new CarvanaBasePage();
         searchCarsPage = new SearchCarsPage();
 //        Waiter.waitForElementToBeClickable(carvanaBasePage.searchCarsButton,5);
 //        carvanaBasePage.searchCarsButton.click();
