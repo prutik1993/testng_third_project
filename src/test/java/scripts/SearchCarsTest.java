@@ -2,23 +2,25 @@ package scripts;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.SearchCarsPage;
 import utilities.TestData;
 import utilities.Waiter;
 import utilities.WindowHandler;
 
+import java.util.Objects;
 import java.util.stream.IntStream;
 
-public class SearchCarsTest extends CarvanaBase{
+public class SearchCarsTest extends CarvanaBase {
 
     @BeforeMethod
-    public void setPage(){
+    public void setPage() {
         searchCarsPage = new SearchCarsPage();
         Waiter.pause(2);
         carvanaBasePage.searchCarsButton.click();
         WindowHandler.moveToChildWindow();
-        Assert.assertEquals(driver.getCurrentUrl(),"https://www.carvana.com/cars");
+        Assert.assertEquals(driver.getCurrentUrl(), "https://www.carvana.com/cars");
     }
 
     /**
@@ -36,12 +38,12 @@ public class SearchCarsTest extends CarvanaBase{
      * |MORE FILTERS |
      */
 
-    @Test(priority = 1, description = "Validate the search filter options and search button")
-    public void validateSearchFilterOptions(){
+    @Test(priority = 1, description = "Validate the search filter options and search button",
+            dataProvider = "searchData")
+    public void validateSearchFilterOptions() {
         IntStream.range(0, searchCarsPage.filterOptions.size()).forEach
                 (i -> Assert.assertTrue(searchCarsPage.filterOptions.get(i).isDisplayed()));
     }
-
     /**
      * Test Case 6: Test name = Validate the search result tiles
      * Test priority = 6
